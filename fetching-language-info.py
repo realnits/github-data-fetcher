@@ -122,8 +122,8 @@ def get_github_repo_languages(org_name, token=None, output_file=None, batch_size
     total_repos = len(all_repos)
     logger.info(f"Found {total_repos} repositories in total.")
     
-    # Process repositories in batches and write to CSV immediately
-    # Set up CSV file with headers
+    # Gather languages for all repositories in batches first
+    # The CSV is written in a later pass once the language list is complete
     all_languages = set()
     
     # First pass: collect all languages across repositories
@@ -246,4 +246,3 @@ if __name__ == "__main__":
         args.token = os.environ["GITHUB_TOKEN"]
     
     get_github_repo_languages(args.org_name, args.token, args.output, args.batch_size)
-nits@FWS-CHE-LT-8869 Github Data Fetche
